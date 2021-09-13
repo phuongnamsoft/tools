@@ -13,7 +13,7 @@ echo ROUNDCUBE_DES_KEY=$(openssl rand -base64 24) >> /iredmail/iredmail-docker.c
 mkdir -p /iredmail/data/{backup,clamav,custom,imapsieve_copy,mailboxes,mlmmj,mlmmj-archive,mysql,sa_rules,ssl,postfix_queue}
 
 docker run \
-    --rm \
+    -d \
     --name iredmail \
     --env-file /iredmail/iredmail-docker.conf \
     --hostname x3.pns.cloud \
