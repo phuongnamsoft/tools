@@ -1,12 +1,14 @@
 #!/bin/bash
 
+/bin/systemctl stop postfix.service
+
 mkdir /iredmail
 
 touch /iredmail/iredmail-docker.conf
 
-echo HOSTNAME=x3.pns.cloud >> /iredmail/iredmail-docker.conf
-echo FIRST_MAIL_DOMAIN=x3.pns.cloud >> /iredmail/iredmail-docker.conf
-echo FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=uMifBrLa4q >> /iredmail/iredmail-docker.conf
+echo HOSTNAME=$(hostname) >> /iredmail/iredmail-docker.conf
+echo FIRST_MAIL_DOMAIN=$(hostname) >> /iredmail/iredmail-docker.conf
+echo FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=$(openssl rand -base64 12) >> /iredmail/iredmail-docker.conf
 echo MLMMJADMIN_API_TOKEN=$(openssl rand -base64 32) >> /iredmail/iredmail-docker.conf
 echo ROUNDCUBE_DES_KEY=$(openssl rand -base64 24) >> /iredmail/iredmail-docker.conf
 
@@ -16,7 +18,7 @@ docker run \
     -d \
     --name iredmail \
     --env-file /iredmail/iredmail-docker.conf \
-    --hostname x3.pns.cloud \
+    --hostname $(hostname) \
     -p 8080:80 \
     -p 8443:443 \
     -p 110:110 \
