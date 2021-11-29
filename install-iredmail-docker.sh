@@ -16,6 +16,7 @@ mkdir -p /iredmail/data/{backup,clamav,custom,imapsieve_copy,mailboxes,mlmmj,mlm
 
 docker run \
     -d \
+    --restart always \
     --name iredmail \
     --env-file /iredmail/iredmail-docker.conf \
     --hostname $(hostname) \
