@@ -10,6 +10,10 @@ server {
     location /mail/ {
         proxy_pass http://127.0.0.1:8080/mail/;
     }
+
+    location /webmail/ {
+        proxy_pass https://127.0.0.1:8080/mail/;
+    }
     
     location /iredadmin/ {
         proxy_pass http://127.0.0.1:8080/iredadmin/;
@@ -53,7 +57,6 @@ server {
 
     include     /etc/nginx/conf.d/phpmyadmin.inc*;
     include     /etc/nginx/conf.d/phppgadmin.inc*;
-    include     /etc/nginx/conf.d/webmail.inc*;
 
     include     %home%/%user%/conf/web/nginx.%domain%.conf*;
 }
