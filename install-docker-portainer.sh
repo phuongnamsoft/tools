@@ -1,7 +1,9 @@
 #!/bin/bash
 
 cp vestacp/templates/web/nginx/php-fpm/portainer.tpl /usr/local/vesta/data/templates/web/nginx/php-fpm/
-cp vestacp/templates/web/nginx/php-fpm/portainer.tpl /usr/local/vesta/data/templates/web/nginx/php-fpm/
+cp vestacp/templates/web/nginx/php-fpm/portainer.stpl /usr/local/vesta/data/templates/web/nginx/php-fpm/
+
+docker volume create portainer_data
 
 docker run -d -p 3040:9000 \
     --name portainer \
